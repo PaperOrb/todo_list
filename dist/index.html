@@ -33,18 +33,22 @@
     </header>
 
     <section class="todos-page">
-      <div class="todos-page-heading">Super secret project</div>
+      <div class="todos-page-heading">
+        <div>Super secret project</div>
+        <div class="icon-container"><i class="fas fa-trash-alt project-delete icon"></i></div>
+      </div>
       <div>
         <ul class="todos-page-list">
           <li class="todo-item">
             <div class="priority"></div>
+
             <div class="checkbox-container">
-              <div class="checkmark"></div>
+              <input type="checkbox" id="checkbox-1"></input>
+              <label for="checkbox-1" class="checkmark"></label>
             </div>
-            <input disabled class="todo-description" value="zxcv"></input>
             <div class="todo-due-date">3 months ago</div>
-            <i class="fas fa-trash-alt todo-delete"></i>
-            <i class="fas fa-edit todo-edit"></i>
+            <div class="icon-container"><i class="fas fa-trash-alt todo-delete icon"></i></div>
+            <div class="icon-container"><i class="fas fa-edit todo-edit icon"></i></div>
           </li>
         </ul>
       </div>
