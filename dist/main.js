@@ -10,23 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/checkbox.js":
-/*!*************************!*\
-  !*** ./src/checkbox.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"checkbox\": () => (/* binding */ checkbox)\n/* harmony export */ });\n\n\nconst checkbox = (function () {\n  function getElement() {\n    return element;\n  }\n\n\n  return { getElement, toggle };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/checkbox.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _checkbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkbox.js */ \"./src/checkbox.js\");\n\n// add todoItem module with a toggleEdit function\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todos_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todos.js */ \"./src/todos.js\");\n\n// add todoItem module with a toggleEdit function\n\nconst todoEdit = document.querySelector(\".todo-edit\");\nconst todoList = document.querySelectorAll(\".todo-item\");\n\ntodoList.forEach((todoItem) => {\n  todoItem.addEventListener(\"click\", _todos_js__WEBPACK_IMPORTED_MODULE_0__.todos.toggleEdit);\n});\n// how to attach eventlistener and get at its parent form? above doesn't work\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/todos.js":
+/*!**********************!*\
+  !*** ./src/todos.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todos\": () => (/* binding */ todos)\n/* harmony export */ });\n\n\nconst todos = (function () {\n  function toggleEdit(e) {\n    e.preventDefault();\n    alert(e.currentTarget.classList);\n  }\n\n  return { toggleEdit };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/todos.js?");
 
 /***/ })
 

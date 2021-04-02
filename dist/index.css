@@ -156,6 +156,9 @@ body {
 }
 
 .icon-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
   height: 1em;
   width: 1em;
   margin: 0 .8em;
@@ -163,6 +166,7 @@ body {
 
 .icon {
   position: absolute;
+  font-size: 1.3em;
 }
 
 .icon:hover {
@@ -172,13 +176,14 @@ body {
 
 /* checkbox */
 .checkbox-container {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
   margin-right: 75%;
 }
 
 .checkbox-container input[type="checkbox"] {
   opacity: 0;
   position: absolute;
-
 }
 
 .checkmark {
