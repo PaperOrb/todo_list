@@ -145,9 +145,10 @@ body {
 }
 
 .todo-input-description {
-  border: 1px solid var(--text-color);
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 5px;
+  border: none;
+  background-color: var(--text-color);
+  color: var(--primary-color);
+  border-radius: 5555px;
   font-size: 28px;
   margin: 0 20px;
   padding: 25px;
