@@ -40,15 +40,18 @@
       <div>
         <ul class="todos-page-list">
           <li>
-            <form action="" class="todo-item num1">
+            <form action="" class="todo-form num2">
               <div class="priority"></div>
-              <button class="checkbox-container">
+              <div class="checkbox-container">
                 <input type="checkbox" id="checkbox-1"></input>
                 <label for="checkbox-1" class="checkmark"></label>
-              </button>
-              <div class="todo-due-date">3 months ago</div>
-              <button class="icon-container todo-delete"><i class="fas fa-trash-alt icon"></i></button>
-              <button class="icon-container todo-edit"><i class="fas fa-edit icon"></i></button>
+              </div>
+              <input type="text" id="checkbox-1" class="todo-input-description" hidden></input>
+              <div class="todo-form-right">
+                <div class="todo-due-date">3 months ago</div>
+                <button class="icon-container todo-remove" id="todo-remove"><i class="fas fa-trash-alt icon"></i></button>
+                <button class="icon-container todo-edit" id="todo-edit"><i class="fas fa-edit icon"></i></button>
+              </div>
             </form>
           </li>
         </ul>

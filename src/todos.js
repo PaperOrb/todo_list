@@ -1,10 +1,20 @@
-export { todos };
+export { todoFormUI };
 
-const todos = (function () {
+const todoFormUI = (function () {
   function toggleEdit(e) {
-    e.preventDefault();
-    alert(e.currentTarget.classList);
+    const checkboxContainer = e.currentTarget.children[1];
+    const todoTextInput = e.currentTarget.children[2];
+    const pencilButton = e.currentTarget.children[3].children[2]
+    
+    pencilButton.style.visibility = "hidden"
+    pencilButton.toggleAttribute("disabled")
+    checkboxContainer.toggleAttribute("hidden");
+    todoTextInput.toggleAttribute("hidden");
   }
 
-  return { toggleEdit };
+  function remove(e) {
+    e.currentTarget.remove();
+  }
+
+  return { toggleEdit, remove };
 })();

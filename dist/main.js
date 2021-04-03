@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todos_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todos.js */ \"./src/todos.js\");\n\n// add todoItem module with a toggleEdit function\n\nconst todoEdit = document.querySelector(\".todo-edit\");\nconst todoList = document.querySelectorAll(\".todo-item\");\n\ntodoList.forEach((todoItem) => {\n  todoItem.addEventListener(\"click\", _todos_js__WEBPACK_IMPORTED_MODULE_0__.todos.toggleEdit);\n});\n// how to attach eventlistener and get at its parent form? above doesn't work\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todos_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todos.js */ \"./src/todos.js\");\n\n\nconst todoForms = document.querySelectorAll(\".todo-form\");\nconst todoFormInputLeft = document.querySelectorAll(\".todo-input-description\");\n\ntodoForms.forEach((todoForm) => {\n  todoForm.addEventListener(\"submit\", (e) => {\n    e.preventDefault();\n\n    alert(e.submitter.id);\n    switch (e.submitter.id) {\n      case \"todo-edit\":\n        _todos_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(e);\n        // todoFormUI.populateInput();\n        break;\n      case \"todo-remove\":\n        alert(\"ifired\");\n        _todos_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.remove(e);\n        break;\n      case \"todo-input-description\":\n        todoItemUI.toggleEdit(e);\n        break;\n    }\n  });\n});\n// how to attach eventlistener and get at its parent form? above doesn't work\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tod
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todos\": () => (/* binding */ todos)\n/* harmony export */ });\n\n\nconst todos = (function () {\n  function toggleEdit(e) {\n    e.preventDefault();\n    alert(e.currentTarget.classList);\n  }\n\n  return { toggleEdit };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/todos.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoFormUI\": () => (/* binding */ todoFormUI)\n/* harmony export */ });\n\n\nconst todoFormUI = (function () {\n  function toggleEdit(e) {\n    const checkboxContainer = e.currentTarget.children[1];\n    const todoTextInput = e.currentTarget.children[2];\n    const pencilButton = e.currentTarget.children[3].children[2]\n    \n    pencilButton.style.visibility = \"hidden\"\n    pencilButton.toggleAttribute(\"disabled\")\n    checkboxContainer.toggleAttribute(\"hidden\");\n    todoTextInput.toggleAttribute(\"hidden\");\n  }\n\n  function remove(e) {\n    e.currentTarget.remove();\n  }\n\n  return { toggleEdit, remove };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/todos.js?");
 
 /***/ })
 
