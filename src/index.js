@@ -1,26 +1,30 @@
-import { todoFormUI } from "./todos.js";
+import { todoFormUI } from "./UI.js";
 
 const todoForms = document.querySelectorAll(".todo-form");
-const todoFormInputLeft = document.querySelectorAll(".todo-input-description");
+const addTodoBtn = document.querySelector("#add-todo");
+
+addTodoBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let newTodo = todoFormUI.add();
+  todoFormUI.toggleEdit(newTodo);
+  // pressing enter on form refreshes page. can you put preventdefault directly on an element?
+});
 
 todoForms.forEach((todoForm) => {
   todoForm.addEventListener("submit", (e) => {
-    // i think submit is the wrong event to use for input type=text because e.submitter is incorrect when pressing enter inside the input field
-    // write pseudocode for eventlisteners on individual buttons on click instead of on submit
-
     switch (e.submitter.id) {
       case "todo-edit":
         e.preventDefault();
-        todoFormUI.toggleEdit(e);
+        todoFormUI.toggleEdit(e.currentTarget);
         // todoFormUI.populateInput();
         break;
       case "todo-remove":
         e.preventDefault();
-        todoFormUI.remove(e);
+        todoFormUI.remove(e.currentTarget);
         break;
       case "todo-input-description-btn":
         e.preventDefault();
-        todoFormUI.toggleEdit(e);
+        todoFormUI.toggleEdit(e.currentTarget);
         break;
     }
   });

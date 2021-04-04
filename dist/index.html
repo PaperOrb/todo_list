@@ -13,7 +13,12 @@
     <header class="side-bar">
       <h1 class="title">TodoList</h1>
       <section class="side-bar-projects">
-        <h2 class="side-bar-projects-header">Projects</h2>
+        <div class="projects-header-container">
+          <button class="add-new-button" id="add-project">
+            <div class="icon-container"><i class="fas fa-plus-square add-new-icon"></i></div>
+            <div class="">Add Project</div>
+          </button>
+        </div>
         <ul>
           <li>
             <button class="project-item">Super secret project</button>
@@ -34,29 +39,49 @@
 
     <section class="todos-page">
       <div class="todos-page-heading">
-        <div>Super secret project</div>
-        <div class="icon-container"><i class="fas fa-trash-alt project-delete icon"></i></div>
+        <h4>Super secret project</h4>
+        <button class="add-new-button" id="add-todo">
+          <div class="icon-container"><i class="fas fa-plus-square add-new-icon"></i></div>
+          <div>Add todo</div>
+        </button>
       </div>
-      <div>
-        <ul class="todos-page-list">
-          <li>
-            <form action="" class="todo-form num2">
-              <div class="priority"></div>
-              <div class="checkbox-container">
-                <input type="checkbox" id="checkbox-1"></input>
-                <label for="checkbox-1" class="checkmark"></label>
-              </div>
-              <input type="text" class="todo-input-description" id="todo-input-description" hidden></input>
-              <button id="todo-input-description-btn" hidden></button> <!--input needs to be paired with a button in order for submit to work-->
-              <div class="todo-form-right">
-                <div class="todo-due-date">3 months ago</div>
-                <button class="icon-container todo-remove" id="todo-remove"><i class="fas fa-trash-alt icon"></i></button>
-                <button class="icon-container todo-edit" id="todo-edit"><i class="fas fa-edit icon"></i></button>
-              </div>
-            </form>
-          </li>
-        </ul>
-      </div>
+      <ul class="todos-page-list">
+        <!-- template todo item -->
+        <li id="clone-this-todo-template" hidden>
+          <form action="" class="todo-form num1">
+            <div class="priority"></div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="template-checkbox"></input>
+              <label for="template-checkbox" class="checkmark"></label>
+            </div>
+            <input type="text" class="todo-input-description" id="todo-input-description" hidden></input>
+            <button id="todo-input-description-btn" hidden></button> <!--input needs to be paired with a button in order for submit to work-->
+            <div class="todo-form-right">
+              <div class="todo-due-date">3 months ago</div>
+              <button class="icon-container todo-remove" id="todo-remove"><i class="fas fa-trash-alt icon"></i></button>
+              <button class="icon-container todo-edit" id="todo-edit"><i class="fas fa-edit icon"></i></button>
+            </div>
+          </form>
+        </li>
+
+        <!-- example todo item -->
+        <li>
+          <form action="" class="todo-form num2">
+            <div class="priority"></div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="checkbox-1"></input>
+              <label for="checkbox-1" class="checkmark"></label>
+            </div>
+            <input type="text" class="todo-input-description" id="todo-input-description" hidden></input>
+            <button id="todo-input-description-btn" hidden></button> <!--input needs to be paired with a button in order for submit to work-->
+            <div class="todo-form-right">
+              <div class="todo-due-date">3 months ago</div>
+              <button class="icon-container todo-remove" id="todo-remove"><i class="fas fa-trash-alt icon"></i></button>
+              <button class="icon-container todo-edit" id="todo-edit"><i class="fas fa-edit icon"></i></button>
+            </div>
+          </form>
+        </li>
+      </ul>
     </section>
   </body>
 
