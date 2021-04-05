@@ -10,23 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/UI.js":
-/*!*******************!*\
-  !*** ./src/UI.js ***!
-  \*******************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoFormUI\": () => (/* binding */ todoFormUI)\n/* harmony export */ });\n\n\nconst todoFormUI = (function () {\n  const todoTemplate = document.querySelector(\"#clone-this-todo-template\");\n  const todoList = document.querySelector(\".todos-page-list\");\n\n  function toggleEdit(target) {\n    const checkboxContainer = target.children[1];\n    const todoTextInput = target.children[2];\n    const pencilButton = target.children[4].children[2];\n\n    pencilButton.style.visibility = pencilButton.style.visibility === \"hidden\" ? \"visible\" : \"hidden\";\n    pencilButton.toggleAttribute(\"disabled\");\n    checkboxContainer.toggleAttribute(\"hidden\");\n    todoTextInput.toggleAttribute(\"hidden\");\n    todoTextInput.focus();\n  }\n\n  function add() {\n    let newTodo = todoTemplate.cloneNode(true);\n    newTodo.toggleAttribute(\"hidden\");\n    todoList.prepend(newTodo);\n    return newTodo.children[0];\n  }\n\n  function remove(currentTarget) {\n    currentTarget.remove();\n  }\n\n  return { toggleEdit, remove, add };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/UI.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _UI_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UI.js */ \"./src/UI.js\");\n\n\nconst todoForms = document.querySelectorAll(\".todo-form\");\nconst todoList = document.querySelector(\".todos-page-list\");\nconst addTodoBtn = document.querySelector(\"#add-todo\");\n\naddTodoBtn.addEventListener(\"click\", (e) => {\n  e.preventDefault();\n  let newTodo = _UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.add();\n  _UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(newTodo);\n});\n\ntodoList.addEventListener(\"submit\", (e) => {\n  switch (e.submitter.id) {\n    case \"todo-edit\":\n      e.preventDefault();\n      _UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(e.target);\n      // todoFormUI.populateInput();\n      break;\n    case \"todo-remove\":\n      e.preventDefault();\n      _UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.remove(e.target);\n      break;\n    case \"todo-input-description-btn\":\n      e.preventDefault();\n      _UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(e.target);\n      break;\n  }\n});\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UI.js */ \"./src/modules/UI.js\");\n\n\nconst todoForms = document.querySelectorAll(\".todo-form\");\nconst todoList = document.querySelector(\".todos-page-list\");\nconst addTodoBtn = document.querySelector(\"#add-todo\");\n\naddTodoBtn.addEventListener(\"click\", (e) => {\n  e.preventDefault();\n  let newTodo = _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.add();\n  _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(newTodo);\n});\n\ntodoList.addEventListener(\"submit\", (e) => {\n  switch (e.submitter.id) {\n    case \"todo-edit\":\n      let description2 = \"not testing\";\n      e.preventDefault();\n      _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(e.target);\n      _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.inputNode(e.target).value = description2;\n      break;\n    case \"todo-remove\":\n      e.preventDefault();\n      _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.remove(e.target);\n      break;\n    case \"todo-input-description-btn\":\n      let description = \"testing\";\n      e.preventDefault();\n      _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.toggleEdit(e.target);\n      _modules_UI_js__WEBPACK_IMPORTED_MODULE_0__.todoFormUI.taskLabel(e.target).setAttribute(\"data-content\", description);\n      break;\n  }\n});\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/UI.js":
+/*!***************************!*\
+  !*** ./src/modules/UI.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"todoFormUI\": () => (/* binding */ todoFormUI)\n/* harmony export */ });\n\n\nconst todoFormUI = (function () {\n  const todoTemplate = document.querySelector(\"#clone-this-todo-template\");\n  const todoList = document.querySelector(\".todos-page-list\");\n\n  function inputNode(target) {\n    return target.children[2];\n  }\n\n  function taskLabel(target) {\n    // alert(target.children[1].children[1].classList);\n    return target.children[1].children[1];\n  }\n\n  function toggleEdit(target) {\n    const checkboxContainer = target.children[1];\n    const pencilButton = target.children[4].children[2];\n\n    pencilButton.style.visibility = pencilButton.style.visibility === \"hidden\" ? \"visible\" : \"hidden\";\n    pencilButton.toggleAttribute(\"disabled\");\n    checkboxContainer.toggleAttribute(\"hidden\");\n    inputNode(target).toggleAttribute(\"hidden\");\n    inputNode(target).focus();\n  }\n\n  function add() {\n    let newTodo = todoTemplate.cloneNode(true);\n    newTodo.toggleAttribute(\"hidden\");\n    todoList.prepend(newTodo);\n    return newTodo.children[0];\n  }\n\n  function remove(currentTarget) {\n    currentTarget.remove();\n  }\n\n  return { toggleEdit, remove, add, inputNode, taskLabel };\n})();\n\n\n//# sourceURL=webpack://my-webpack-project/./src/modules/UI.js?");
 
 /***/ })
 

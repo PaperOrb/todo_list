@@ -4,16 +4,24 @@ const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
 
+  function inputNode(target) {
+    return target.children[2];
+  }
+
+  function taskLabel(target) {
+    // alert(target.children[1].children[1].classList);
+    return target.children[1].children[1];
+  }
+
   function toggleEdit(target) {
     const checkboxContainer = target.children[1];
-    const todoTextInput = target.children[2];
     const pencilButton = target.children[4].children[2];
 
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     pencilButton.toggleAttribute("disabled");
     checkboxContainer.toggleAttribute("hidden");
-    todoTextInput.toggleAttribute("hidden");
-    todoTextInput.focus();
+    inputNode(target).toggleAttribute("hidden");
+    inputNode(target).focus();
   }
 
   function add() {
@@ -27,5 +35,5 @@ const todoFormUI = (function () {
     currentTarget.remove();
   }
 
-  return { toggleEdit, remove, add };
+  return { toggleEdit, remove, add, inputNode, taskLabel };
 })();

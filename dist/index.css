@@ -189,9 +189,9 @@ body {
 
 /* checkbox */
 .checkbox-container {
+  width: 75%;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  margin-right: 75%;
 }
 
 .checkbox-container input[type="checkbox"] {
@@ -212,9 +212,11 @@ body {
 }
 
 .checkmark::after {
+  position: absolute;
+  width: 45vw;
   font-size: 22px;
   margin-left: 50px;
-  content: 'asdfasdf';
+  content: attr(data-content);
 }
 
 .checkmark:hover {

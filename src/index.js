@@ -1,4 +1,4 @@
-import { todoFormUI } from "./UI.js";
+import { todoFormUI } from "./modules/UI.js";
 
 const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
@@ -13,17 +13,20 @@ addTodoBtn.addEventListener("click", (e) => {
 todoList.addEventListener("submit", (e) => {
   switch (e.submitter.id) {
     case "todo-edit":
+      let description2 = "not testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-      // todoFormUI.populateInput();
+      todoFormUI.inputNode(e.target).value = description2;
       break;
     case "todo-remove":
       e.preventDefault();
       todoFormUI.remove(e.target);
       break;
     case "todo-input-description-btn":
+      let description = "testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
+      todoFormUI.taskLabel(e.target).setAttribute("data-content", description);
       break;
   }
 });
