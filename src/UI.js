@@ -4,10 +4,10 @@ const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
 
-  function toggleEdit(currentTarget) {
-    const checkboxContainer = currentTarget.children[1];
-    const todoTextInput = currentTarget.children[2];
-    const pencilButton = currentTarget.children[4].children[2];
+  function toggleEdit(target) {
+    const checkboxContainer = target.children[1];
+    const todoTextInput = target.children[2];
+    const pencilButton = target.children[4].children[2];
 
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     pencilButton.toggleAttribute("disabled");
