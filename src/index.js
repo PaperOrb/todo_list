@@ -1,6 +1,7 @@
 import { todoFormUI } from "./UI.js";
 
 const todoForms = document.querySelectorAll(".todo-form");
+// const todoList = document.querySelector(".todos-page-list");
 const addTodoBtn = document.querySelector("#add-todo");
 
 addTodoBtn.addEventListener("click", (e) => {
