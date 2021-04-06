@@ -4,7 +4,7 @@ const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
 
-  function inputNode(target) {
+  function taskDescInput(target) {
     return target.querySelector(".todo-input-description");
   }
 
@@ -19,8 +19,8 @@ const todoFormUI = (function () {
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     pencilButton.toggleAttribute("disabled");
     checkboxContainer.toggleAttribute("hidden");
-    inputNode(target).toggleAttribute("hidden");
-    inputNode(target).focus();
+    taskDescInput(target).toggleAttribute("hidden");
+    taskDescInput(target).focus();
   }
 
   function createBlankForm() {
@@ -39,7 +39,7 @@ const todoFormUI = (function () {
   }
 
   function fillInput(form, data) {
-    inputNode(form).setAttribute("value", data);
+    taskDescInput(form).setAttribute("value", data);
   }
 
   function displayList(listArr) {
@@ -55,5 +55,5 @@ const todoFormUI = (function () {
     currentTarget.remove();
   }
 
-  return { toggleEdit, displayList, remove, createBlankForm, fillLabel, fillInput, displayTodo, inputNode, taskLabel };
+  return { toggleEdit, displayList, remove, createBlankForm, fillLabel, fillInput, displayTodo, taskDescInput, taskLabel };
 })();

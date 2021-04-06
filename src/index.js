@@ -23,8 +23,8 @@ todoList.addEventListener("submit", (e) => {
     case "todo-edit":
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-      // let label = todoFormUI.taskLabel(e.target);
-      // todoFormUI.fillInput(e.target, label.content);
+      let label = todoFormUI.taskLabel(e.target);
+      todoFormUI.fillInput(e.target, label.getAttribute("data-content"));
       break;
     case "todo-remove":
       e.preventDefault();
@@ -34,6 +34,8 @@ todoList.addEventListener("submit", (e) => {
       // let description = "testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
+      let input = todoFormUI.taskDescInput(e.target);
+      todoFormUI.fillLabel(e.target, input.value);
       // todoFormUI.taskLabel(e.target).setAttribute("data-content", description);
       break;
   }
