@@ -3,14 +3,9 @@ export { todoFormUI };
 const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
-  let index = 0;
 
-  function taskDescInput(target) {
+  function descriptionInputEle(target) {
     return target.querySelector(".todo-input-description");
-  }
-
-  function taskCheckbox(target) {
-    return target.querySelector(".checkbox");
   }
 
   function taskLabel(target) {
@@ -24,55 +19,32 @@ const todoFormUI = (function () {
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     pencilButton.toggleAttribute("disabled");
     checkboxContainer.toggleAttribute("hidden");
-    taskDescInput(target).toggleAttribute("hidden");
-    taskDescInput(target).focus();
+    descriptionInputEle(target).toggleAttribute("hidden");
+    descriptionInputEle(target).focus();
   }
 
-  function createBlankForm() {
-    let newTodo = todoTemplate.cloneNode(true);
-    newTodo.toggleAttribute("hidden");
-    addUniqueID(newTodo);
-    addUniqueDescIDAndLabel(newTodo);
-    return newTodo;
-  }
-
-  function displayTodo(todoForm, todoObj) {
-    // [id, DescID, labelFor, priority, completion, dueDate]
-    obj = {
-      id: todoForm.id,
-      DescID: taskCheckbox(todoForm).id,
-      labelFor: taskLabel(todoForm),
-    };
-    alert(todoObj);
-    fillLabel(todoForm, todoObj);
-    fillInput(todoForm, todoObj);
+  // what to do with this function
+  function populateTodo(todoForm, todoObj) {
+    todoForm.id = todoObj.id; // set form id
+    todoForm.querySelector(".checkbox").id = `checkbox: ${todoObj.id}`; // set checkbox ID
+    taskLabel(todoForm).setAttribute("for", taskCheckbox(todoForm).id); // set label for attribute
+    taskLabel(form).setAttribute("data-content", todoObj.labelDataContent); // set label content
+    descriptionInputEle(form).setAttribute("value", todoObj.labelDataContent); // set input value from label content
     // add function to fillPriority
     // add function to fillDate
-    todoList.prepend(todoForm);
-    return todoForm;
   }
 
-  function fillLabel(form, todoObj) {
-    taskLabel(form).setAttribute("data-content", todoObj);
-  }
-
-  function fillInput(form, todoObj) {
-    taskDescInput(form).setAttribute("value", todoObj);
-  }
-
-  function addUniqueID(form) {
-    form.id = ++index;
-  }
-
-  function addUniqueDescIDAndLabel(form) {
-    taskCheckbox(form).id = `checkbox: ${form.id}`;
-    taskLabel(form).setAttribute("for", taskCheckbox(form).id);
+  function attachBlankForm() {
+    let newTodo = todoTemplate.cloneNode(true);
+    newTodo.toggleAttribute("hidden");
+    return newTodo;
   }
 
   function displayList(listArr) {
     listArr.forEach((todoObj) => {
       let form = createBlankForm();
-      todoFormUI.displayTodo(form, todoObj);
+      todoFormUI.attachBlankForm(form, todoObj);
+      todoFormUI.populateTodo(todoForm, todoObj)
     });
   }
 
@@ -84,11 +56,11 @@ const todoFormUI = (function () {
     toggleEdit,
     displayList,
     remove,
-    createBlankForm,
-    fillLabel,
-    fillInput,
-    displayTodo,
-    taskDescInput,
-    taskLabel,
+    attachBlankForm,
+    // getPriorityInput
+    // getDescriptionInputEle
+    // getDateInput
+    // getCompletionStatusInput
+    populateTodo,
   };
 })();

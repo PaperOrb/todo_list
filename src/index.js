@@ -14,8 +14,10 @@ const addTodoBtn = document.querySelector("#add-todo");
 
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let blankTodo = todoFormUI.displayTodo(todoFormUI.createBlankForm());
-  todoFormUI.toggleEdit(blankTodo);
+  let todoObj = todos.createTodoObj();
+  let form = todoFormUI.attachBlankForm(todoObj);
+  todoFormUI.populateTodo(form);
+  todoFormUI.toggleEdit(form);
 });
 
 todoList.addEventListener("submit", (e) => {
@@ -23,9 +25,6 @@ todoList.addEventListener("submit", (e) => {
     case "todo-edit":
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-
-      let label = todoFormUI.taskLabel(e.target);
-      todoFormUI.fillInput(e.target, label.getAttribute("data-content"));
       break;
     case "todo-remove":
       e.preventDefault();
@@ -35,10 +34,21 @@ todoList.addEventListener("submit", (e) => {
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
 
-      let input = todoFormUI.taskDescInput(e.target);
-      todoFormUI.fillLabel(e.target, input.value);
+      let todoObj = todos.findTodo(e.target.id);
+
+      
+      todoObj.priority = todoFormUI.getPriorityInput(e.target);
+      todoObj.labelDataContent = todoFormUI.getDescriptionInput(e.target);
+      getDescriptionInputEle.value = descriptionInputEle.value
+      todoObj.dueDate = todoFormUI.getDateInput(e.target);
+
+      
+      todoObj.labelDataContent = input;
+
+      todoObj.desc = input;
+      todoFormUI.fillLabel(e.target, todoObj.desc);
       break;
-      // add case "fillPriority"
-      // add caes "fillDate"
+    // add case "fillPriority"
+    // add caes "fillDate"
   }
 });
