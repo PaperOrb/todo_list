@@ -1,32 +1,40 @@
-import { todoFormUI } from "./modules/UI.js";
+import { todoFormUI } from "./modules/todoFormUI.js";
+import { todos } from "./modules/todos.js";
 
 const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
 const addTodoBtn = document.querySelector("#add-todo");
 
+// load page
+(function () {
+  let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
+
+  todoFormUI.displayList(localStorage);
+})();
+
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let newTodo = todoFormUI.add();
-  todoFormUI.toggleEdit(newTodo);
+  let blankTodo = todoFormUI.displayTodo(todoFormUI.createBlankForm());
+  todoFormUI.toggleEdit(blankTodo);
 });
 
 todoList.addEventListener("submit", (e) => {
   switch (e.submitter.id) {
     case "todo-edit":
-      let description2 = "not testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-      todoFormUI.inputNode(e.target).value = description2;
+      // let label = todoFormUI.taskLabel(e.target);
+      // todoFormUI.fillInput(e.target, label.content);
       break;
     case "todo-remove":
       e.preventDefault();
       todoFormUI.remove(e.target);
       break;
     case "todo-input-description-btn":
-      let description = "testing";
+      // let description = "testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-      todoFormUI.taskLabel(e.target).setAttribute("data-content", description);
+      // todoFormUI.taskLabel(e.target).setAttribute("data-content", description);
       break;
   }
 });

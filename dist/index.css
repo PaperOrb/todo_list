@@ -199,7 +199,7 @@ body {
   position: absolute;
 }
 
-.checkmark {
+.label-faking-as-checkmark {
   position: relative;
   display: flex;
   content: '';
@@ -211,7 +211,7 @@ body {
   transition: all 150ms;
 }
 
-.checkmark::after {
+.label-faking-as-checkmark::after {
   position: absolute;
   width: 45vw;
   font-size: 22px;
@@ -219,12 +219,12 @@ body {
   content: attr(data-content);
 }
 
-.checkmark:hover {
+.label-faking-as-checkmark:hover {
   transform: scale(110%);
   cursor: pointer;
 }
 
-.checkmark::before {
+.label-faking-as-checkmark::before {
   content: "";
   position: absolute;
   bottom:20%;
@@ -237,15 +237,15 @@ body {
   opacity: 0;
 }
 
-.checkbox-container input[type="checkbox"]:checked ~ .checkmark {
+.checkbox-container input[type="checkbox"]:checked ~ .label-faking-as-checkmark {
   background-color: green;
 }
 
-.checkbox-container input[type="checkbox"]:checked ~ .checkmark::after {
+.checkbox-container input[type="checkbox"]:checked ~ .label-faking-as-checkmark::after {
   text-decoration: line-through;
 }
 
-.checkbox-container input[type="checkbox"]:checked ~ .checkmark::before {
+.checkbox-container input[type="checkbox"]:checked ~ .label-faking-as-checkmark::before {
   opacity: 1;
 }
 
