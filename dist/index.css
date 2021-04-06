@@ -71,7 +71,7 @@ body {
   font-size: 23px;
   margin: 10px 0;
   width: 100%;
-  transition: all 250ms;
+  transition: all 150ms;
 }
 
 .project-item:hover {
@@ -118,6 +118,7 @@ body {
   align-items: center;
   background: none;
   border: none;
+  transition: all 150ms;
 }
 
 .add-new-button:hover {

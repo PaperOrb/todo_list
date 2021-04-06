@@ -3,9 +3,14 @@ export { todoFormUI };
 const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
+  let index = 0;
 
   function taskDescInput(target) {
     return target.querySelector(".todo-input-description");
+  }
+
+  function taskCheckbox(target) {
+    return target.querySelector(".checkbox");
   }
 
   function taskLabel(target) {
@@ -26,28 +31,48 @@ const todoFormUI = (function () {
   function createBlankForm() {
     let newTodo = todoTemplate.cloneNode(true);
     newTodo.toggleAttribute("hidden");
+    addUniqueID(newTodo);
+    addUniqueDescIDAndLabel(newTodo);
     return newTodo;
   }
 
-  function displayTodo(todo) {
-    todoList.prepend(todo);
-    return todo;
+  function displayTodo(todoForm, todoObj) {
+    // [id, DescID, labelFor, priority, completion, dueDate]
+    obj = {
+      id: todoForm.id,
+      DescID: taskCheckbox(todoForm).id,
+      labelFor: taskLabel(todoForm),
+    };
+    alert(todoObj);
+    fillLabel(todoForm, todoObj);
+    fillInput(todoForm, todoObj);
+    // add function to fillPriority
+    // add function to fillDate
+    todoList.prepend(todoForm);
+    return todoForm;
   }
 
-  function fillLabel(form, data) {
-    taskLabel(form).setAttribute("data-content", data);
+  function fillLabel(form, todoObj) {
+    taskLabel(form).setAttribute("data-content", todoObj);
   }
 
-  function fillInput(form, data) {
-    taskDescInput(form).setAttribute("value", data);
+  function fillInput(form, todoObj) {
+    taskDescInput(form).setAttribute("value", todoObj);
+  }
+
+  function addUniqueID(form) {
+    form.id = ++index;
+  }
+
+  function addUniqueDescIDAndLabel(form) {
+    taskCheckbox(form).id = `checkbox: ${form.id}`;
+    taskLabel(form).setAttribute("for", taskCheckbox(form).id);
   }
 
   function displayList(listArr) {
-    listArr.forEach((todoData) => {
+    listArr.forEach((todoObj) => {
       let form = createBlankForm();
-      fillLabel(form, todoData);
-      fillInput(form, todoData);
-      todoFormUI.displayTodo(form);
+      todoFormUI.displayTodo(form, todoObj);
     });
   }
 
@@ -55,5 +80,15 @@ const todoFormUI = (function () {
     currentTarget.remove();
   }
 
-  return { toggleEdit, displayList, remove, createBlankForm, fillLabel, fillInput, displayTodo, taskDescInput, taskLabel };
+  return {
+    toggleEdit,
+    displayList,
+    remove,
+    createBlankForm,
+    fillLabel,
+    fillInput,
+    displayTodo,
+    taskDescInput,
+    taskLabel,
+  };
 })();

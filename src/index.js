@@ -5,7 +5,7 @@ const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
 const addTodoBtn = document.querySelector("#add-todo");
 
-// load page
+// module purely for testing load page
 (function () {
   let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
 
@@ -23,6 +23,7 @@ todoList.addEventListener("submit", (e) => {
     case "todo-edit":
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
+
       let label = todoFormUI.taskLabel(e.target);
       todoFormUI.fillInput(e.target, label.getAttribute("data-content"));
       break;
@@ -31,12 +32,13 @@ todoList.addEventListener("submit", (e) => {
       todoFormUI.remove(e.target);
       break;
     case "todo-input-description-btn":
-      // let description = "testing";
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
+
       let input = todoFormUI.taskDescInput(e.target);
       todoFormUI.fillLabel(e.target, input.value);
-      // todoFormUI.taskLabel(e.target).setAttribute("data-content", description);
       break;
+      // add case "fillPriority"
+      // add caes "fillDate"
   }
 });
