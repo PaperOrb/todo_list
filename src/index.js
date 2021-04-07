@@ -25,6 +25,7 @@ addTodoBtn.addEventListener("click", (e) => {
 
 todoList.addEventListener("submit", (e) => {
   let todoObj = todos.findTodo(e.target.id);
+
   switch (e.submitter.id) {
     case "todo-edit":
       e.preventDefault();
@@ -42,8 +43,8 @@ todoList.addEventListener("submit", (e) => {
       // todoObj.labelDataContent = todoFormUI.getDescriptionInput(e.target);
       // todoObj.dueDate = todoFormUI.getDateInput(e.target);
       todoFormUI.toggleEdit(e.target);
-      // todoObj.labelDataContent = todoFormUI.getDescInputEle(e.target).value;
-      updateTodoForm(e.target, todoObj);
+      todoObj.labelDataContent = todoFormUI.getDescInputEle(e.target).value;
+      todoFormUI.updateTodoForm(e.target, todoObj);
 
       break;
     // add case "fillPriority"

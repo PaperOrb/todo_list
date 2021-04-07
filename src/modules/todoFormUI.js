@@ -26,9 +26,10 @@ const todoFormUI = (function () {
 
   function updateTodoForm(todoForm, todoObj) {
     todoForm.id = todoObj.id; // set form id
+
     todoForm.querySelector(".checkbox").id = todoObj.descID; // set checkbox ID
     taskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
-    getDescInputEle(todoForm).setAttribute("value", todoObj.labelDataContent); // set input value from label content
+    // getDescInputEle(todoForm).setAttribute("value", todoObj.labelDataContent); // set input value from label content
     taskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
     // add function to fillPriority
     // add function to fillDate

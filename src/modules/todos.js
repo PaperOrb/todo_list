@@ -22,7 +22,7 @@ const todos = (function () {
 
   function findTodo(targetID) {
     return todosArr.find((element) => {
-      element.id === targetID;
+      return `${element.id}` === `${targetID}`;
     });
   }
 
@@ -30,9 +30,7 @@ const todos = (function () {
     return todosArr;
   }
 
-  function updateTodo() {}
-
   function removeTodo() {}
 
-  return { updateTodo, removeTodo, getList, addTodoObj, findTodo };
+  return { removeTodo, getList, addTodoObj, findTodo };
 })();
