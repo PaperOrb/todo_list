@@ -17,23 +17,24 @@ const todoFormUI = (function () {
     const pencilButton = target.querySelector("#todo-edit");
 
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
+    // alert(pencilButton);
     pencilButton.toggleAttribute("disabled");
     checkboxContainer.toggleAttribute("hidden");
-    descriptionInputEle(target).toggleAttribute("hidden");
-    descriptionInputEle(target).focus();
+    getDescInputEle(target).toggleAttribute("hidden");
+    getDescInputEle(target).focus();
   }
 
   function updateTodoForm(todoForm, todoObj) {
     todoForm.id = todoObj.id; // set form id
-    todoForm.querySelector(".checkbox").id = `checkbox: ${todoObj.id}`; // set checkbox ID
-    taskLabel(todoForm).setAttribute("for", taskCheckbox(todoForm).id); // set label for attribute
-    taskLabel(form).setAttribute("data-content", todoObj.labelDataContent); // set label content
-    descriptionInputEle(form).setAttribute("value", todoObj.labelDataContent); // set input value from label content
+    todoForm.querySelector(".checkbox").id = todoObj.descID; // set checkbox ID
+    taskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
+    getDescInputEle(todoForm).setAttribute("value", todoObj.labelDataContent); // set input value from label content
+    taskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
     // add function to fillPriority
     // add function to fillDate
   }
 
-  function attachBlankForm() {
+  function newBlankFormInsideLI() {
     let newTodo = todoTemplate.cloneNode(true);
     newTodo.toggleAttribute("hidden");
     return newTodo;
@@ -41,8 +42,8 @@ const todoFormUI = (function () {
 
   function displayList(listArr) {
     listArr.forEach((todoObj) => {
-      let form = createBlankForm();
-      todoFormUI.attachBlankForm(form, todoObj);
+      let form = newBlankFormInsideLI();
+      todoFormUI.newBlankFormInsideLI(form, todoObj);
       todoFormUI.populateTodo(todoForm, todoObj);
     });
   }
@@ -55,7 +56,7 @@ const todoFormUI = (function () {
     toggleEdit,
     displayList,
     remove,
-    attachBlankForm,
+    newBlankFormInsideLI,
     // getPriorityInput
     getDescInputEle,
     // getDateInput
