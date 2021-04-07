@@ -4,7 +4,7 @@ const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
   const todoList = document.querySelector(".todos-page-list");
 
-  function descriptionInputEle(target) {
+  function getDescInputEle(target) {
     return target.querySelector(".todo-input-description");
   }
 
@@ -23,8 +23,7 @@ const todoFormUI = (function () {
     descriptionInputEle(target).focus();
   }
 
-  // what to do with this function
-  function populateTodo(todoForm, todoObj) {
+  function updateTodoForm(todoForm, todoObj) {
     todoForm.id = todoObj.id; // set form id
     todoForm.querySelector(".checkbox").id = `checkbox: ${todoObj.id}`; // set checkbox ID
     taskLabel(todoForm).setAttribute("for", taskCheckbox(todoForm).id); // set label for attribute
@@ -44,7 +43,7 @@ const todoFormUI = (function () {
     listArr.forEach((todoObj) => {
       let form = createBlankForm();
       todoFormUI.attachBlankForm(form, todoObj);
-      todoFormUI.populateTodo(todoForm, todoObj)
+      todoFormUI.populateTodo(todoForm, todoObj);
     });
   }
 
@@ -58,9 +57,9 @@ const todoFormUI = (function () {
     remove,
     attachBlankForm,
     // getPriorityInput
-    // getDescriptionInputEle
+    getDescInputEle,
     // getDateInput
     // getCompletionStatusInput
-    populateTodo,
+    updateTodoForm,
   };
 })();

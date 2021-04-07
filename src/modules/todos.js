@@ -4,19 +4,20 @@ const todos = (function () {
   let arr = []; // make this load from localstorage at some point
   let index = 0;
 
-  function createTodoObj(form) {
-    obj = {
+  // there's no named parameters in vanilla JS to set a specific param, so have to supply all args every time
+  function addTodoObj({ labelDataContent, priority, completion, dueDate }) {
+    let todoObj = {
       id: ++index,
-      DescID: taskCheckbox(todoForm).id,
-      labelFor: taskLabel(todoForm),
-      labelDataContent: "",
-      priority: "",
-      completion: "",
-      dueDate: "",
+      descID: `descID: ${index}`,
+      labelFor: `descID: ${index}`,
+      labelDataContent: labelDataContent,
+      priority: priority,
+      completion: completion,
+      dueDate: dueDate,
     };
-    arr.push(todo);
-    // arr.sort((a, b) => a > b ? 1 : -1)
-    return arr;
+    arr.push(todoObj);
+    // // arr.sort((a, b) => a > b ? 1 : -1)
+    return todoObj;
   }
 
   function getList() {
@@ -27,5 +28,5 @@ const todos = (function () {
 
   function removeTodo() {}
 
-  return { updateTodo, removeTodo, getList, createTodoObj };
+  return { updateTodo, removeTodo, getList, addTodoObj };
 })();
