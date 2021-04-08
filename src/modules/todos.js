@@ -4,7 +4,6 @@ const todos = (function () {
   let todosArr = []; // make this load from localstorage at some point
   let index = 0;
 
-  // there's no named parameters in vanilla JS to set a specific param, so have to supply all args every time
   function addTodoObj({ labelDataContent, priority, completion, dueDate }) {
     let todoObj = {
       id: ++index,

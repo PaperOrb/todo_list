@@ -7,11 +7,14 @@ const addTodoBtn = document.querySelector("#add-todo");
 let index = 0;
 
 // module purely for testing load page
-// (function () {
-// redo this to use todoObj
-//   let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
-//   todoFormUI.displayList(localStorage);
-// })();
+(function () {
+  // redo this to use todoObj. then create projects module
+  let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
+  localStorage.forEach((label) => {
+    todos.addTodoObj({ labelDataContent: label });
+  });
+  todoFormUI.displayList(todos.getList());
+})();
 
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();

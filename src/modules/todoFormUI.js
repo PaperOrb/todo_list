@@ -29,7 +29,6 @@ const todoFormUI = (function () {
 
     todoForm.querySelector(".checkbox").id = todoObj.descID; // set checkbox ID
     taskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
-    // getDescInputEle(todoForm).setAttribute("value", todoObj.labelDataContent); // set input value from label content
     taskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
     // add function to fillPriority
     // add function to fillDate
@@ -43,9 +42,10 @@ const todoFormUI = (function () {
 
   function displayList(listArr) {
     listArr.forEach((todoObj) => {
-      let form = newBlankFormInsideLI();
-      todoFormUI.newBlankFormInsideLI(form, todoObj);
-      todoFormUI.populateTodo(todoForm, todoObj);
+      let formInsideContainer = todoFormUI.newBlankFormInsideLI();
+      let form = formInsideContainer.querySelector(".todo-form");
+      todoFormUI.updateTodoForm(form, todoObj);
+      todoList.prepend(formInsideContainer);
     });
   }
 
