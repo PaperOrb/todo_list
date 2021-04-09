@@ -9,6 +9,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    watchContentBase: true,
     open: true,
     host: "localhost",
   },
@@ -18,6 +19,10 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\\.(js|jsx)$/,
+        loader: "babel-loader",
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],

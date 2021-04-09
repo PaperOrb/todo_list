@@ -1,5 +1,7 @@
 import { todoFormUI } from "./modules/todoFormUI.js";
 import { todos } from "./modules/todos.js";
+import { projectsFormUI } from "./modules/projectsFormUI.js";
+import { projects } from "./modules/projects.js";
 
 const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
@@ -8,12 +10,25 @@ let index = 0;
 
 // module purely for testing load page
 (function () {
-  // redo this to use todoObj. then create projects module
-  let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
-  localStorage.forEach((label) => {
-    todos.addTodoObj({ labelDataContent: label });
-  });
-  todoFormUI.displayList(todos.getList());
+  localStorage.clear();
+  let testTodo = todos.addTodoObj({ labelDataContent: "test todo" });
+  projects.addProjectObj({ labelDataContent: "first project", todoList: [testTodo] });
+  projects.addProjectsToLS();
+  let projectsList = projects.getProjectsFromLS();
+  console.log(projectsList);
+  // top level objects in LS are projects. Nested arrs inside them are todos
+
+  // localStorage.forEach((project) => {
+  //   todos.addTodoObj({ labelDataContent: label });
+  // });
+  // projectsFormUI.displayList(projects.getList());
+
+  // -------------------------------------------------
+  // let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
+  // localStorage.forEach((label) => {
+  //   todos.addTodoObj({ labelDataContent: label });
+  // });
+  // todoFormUI.displayList(todos.getList());
 })();
 
 addTodoBtn.addEventListener("click", (e) => {
