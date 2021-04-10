@@ -24,7 +24,7 @@ const projectsFormUI = (function () {
     getDescInputEle(target).focus();
   }
 
-  function updateprojectForm(projectForm, projectObj) {
+  function updateProjectForm(projectForm, projectObj) {
     projectForm.id = projectObj.id; // set project form id
     selectProjectBtn(projectForm).textContent = projectObj.title; // set project form button title
   }
@@ -39,12 +39,13 @@ const projectsFormUI = (function () {
     listArr.forEach((projectObj) => {
       let formInsideContainer = newBlankFormInsideLI();
       let form = formInsideContainer.querySelector(".project-form");
-      updateprojectForm(form, projectObj);
+      updateProjectForm(form, projectObj);
       projectList.prepend(formInsideContainer);
     });
   }
 
   function remove(currentTarget) {
+    console.log(currentTarget);
     currentTarget.remove();
   }
 
@@ -53,10 +54,7 @@ const projectsFormUI = (function () {
     displayList,
     remove,
     newBlankFormInsideLI,
-    // getPriorityInput
     getDescInputEle,
-    // getDateInput
-    // getCompletionStatusInput
-    updateprojectForm,
+    updateProjectForm,
   };
 })();

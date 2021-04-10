@@ -84,6 +84,9 @@ body {
   width: 80%;
   height: 50px;
   transition: all 150ms;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-input-description {
@@ -243,14 +246,17 @@ body {
 
 .label-faking-as-checkmark::after {
   position: absolute;
-  width: 45vw;
+  width: 40vw;
   font-size: 22px;
   margin-left: 50px;
   content: attr(data-content);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .label-faking-as-checkmark:hover {
-  transform: scale(110%);
+  transform: scale(105%);
   cursor: pointer;
 }
 

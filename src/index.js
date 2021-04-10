@@ -15,7 +15,7 @@ const addProjectBtn = document.querySelector("#add-project");
 (function () {
   localStorage.clear();
   let testTodo = todos.addTodoObj({ labelDataContent: "test todo" });
-  projects.addProjectObj({ title: "first project", todoList: [testTodo] });
+  projects.addProjectObj({ title: "first project first project first project first project", todoList: [testTodo] });
   projects.addProjectObj({ title: "second project", todoList: [testTodo] });
 
   let projectsList = projects.getList();
@@ -40,7 +40,7 @@ addProjectBtn.addEventListener("click", (e) => {
   let projObj = projects.addProjectObj({});
   let projFormInsideLI = projectsFormUI.newBlankFormInsideLI();
   let projForm = projFormInsideLI.querySelector(".project-form");
-  projectsFormUI.updateprojectForm(projForm, projObj);
+  projectsFormUI.updateProjectForm(projForm, projObj);
   projectsList.prepend(projFormInsideLI);
   projectsFormUI.toggleEdit(projForm, projObj);
 });
@@ -57,14 +57,23 @@ addTodoBtn.addEventListener("click", (e) => {
 
 projectsList.addEventListener("submit", (e) => {
   let projectObj = projects.findProject(e.target.id);
-  console.log(e.submitter.id);
 
   switch (e.submitter.id) {
+    case "view-project-todos":
+      break;
+    case "project-edit":
+      e.preventDefault();
+      projectsFormUI.toggleEdit(e.target);
+      break;
+    case "project-remove":
+      e.preventDefault();
+      projectsFormUI.remove(e.target);
+      break;
     case "project-input-description-btn":
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
       projectObj.title = projectsFormUI.getDescInputEle(e.target).value;
-      projectsFormUI.updateTodoForm(e.target, todoObj);
+      projectsFormUI.updateProjectForm(e.target, projectObj);
       break;
   }
 });
@@ -76,7 +85,6 @@ todoList.addEventListener("submit", (e) => {
     case "todo-edit":
       e.preventDefault();
       todoFormUI.toggleEdit(e.target);
-      getDescInputEle(form).setAttribute("value", data);
       break;
     case "todo-remove":
       e.preventDefault();
