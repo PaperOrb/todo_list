@@ -13,13 +13,13 @@ const projectsFormUI = (function () {
   }
 
   function toggleEdit(target) {
-    const checkboxContainer = target.querySelector(".checkbox-container");
     const pencilButton = target.querySelector("#project-edit");
+    const projectTitleBtn = target.querySelector(".select-project-btn");
 
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
-    // alert(pencilButton);
     pencilButton.toggleAttribute("disabled");
-    checkboxContainer.toggleAttribute("hidden");
+    projectTitleBtn.toggleAttribute("hidden");
+    projectTitleBtn.toggleAttribute("disabled");
     getDescInputEle(target).toggleAttribute("hidden");
     getDescInputEle(target).focus();
   }

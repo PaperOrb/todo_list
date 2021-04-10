@@ -40,10 +40,9 @@ addProjectBtn.addEventListener("click", (e) => {
   let projObj = projects.addProjectObj({});
   let projFormInsideLI = projectsFormUI.newBlankFormInsideLI();
   let projForm = projFormInsideLI.querySelector(".project-form");
-  console.log(projForm);
   projectsFormUI.updateprojectForm(projForm, projObj);
   projectsList.prepend(projFormInsideLI);
-  // projectsFormUI.toggleEdit(projForm, projObj);
+  projectsFormUI.toggleEdit(projForm, projObj);
 });
 
 addTodoBtn.addEventListener("click", (e) => {
@@ -54,6 +53,20 @@ addTodoBtn.addEventListener("click", (e) => {
   todoFormUI.updateTodoForm(form, todoObj);
   todoList.prepend(formInsideContainer);
   todoFormUI.toggleEdit(form, todoObj);
+});
+
+projectsList.addEventListener("submit", (e) => {
+  let projectObj = projects.findProject(e.target.id);
+  console.log(e.submitter.id);
+
+  switch (e.submitter.id) {
+    case "project-input-description-btn":
+      e.preventDefault();
+      projectsFormUI.toggleEdit(e.target);
+      projectObj.title = projectsFormUI.getDescInputEle(e.target).value;
+      projectsFormUI.updateTodoForm(e.target, todoObj);
+      break;
+  }
 });
 
 todoList.addEventListener("submit", (e) => {
