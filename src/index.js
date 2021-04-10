@@ -64,6 +64,7 @@ projectsList.addEventListener("submit", (e) => {
     case "project-edit":
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
+      projectsFormUI.getDescInputEle(e.target).setAttribute("value", projectObj.title);
       break;
     case "project-remove":
       e.preventDefault();
@@ -84,6 +85,7 @@ todoList.addEventListener("submit", (e) => {
   switch (e.submitter.id) {
     case "todo-edit":
       e.preventDefault();
+      todoFormUI.getDescInputEle(e.target).setAttribute("value", todoObj.labelDataContent);
       todoFormUI.toggleEdit(e.target);
       break;
     case "todo-remove":
