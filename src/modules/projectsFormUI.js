@@ -20,6 +20,8 @@ const projectsFormUI = (function () {
     pencilButton.toggleAttribute("disabled");
     projectTitleBtn.toggleAttribute("hidden");
     projectTitleBtn.toggleAttribute("disabled");
+    // alert(getDescInputEle(target));
+    // getDescInputEle(target).value = projectTitleBtn.textContent || "";
     getDescInputEle(target).toggleAttribute("hidden");
     getDescInputEle(target).focus();
   }
