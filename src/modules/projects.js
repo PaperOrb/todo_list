@@ -1,43 +1,17 @@
 export { projects };
 
 const projects = (function () {
-  let projectsArr = [
-    {
-      id: 1,
-      label: "Proj1",
-      todoList: [
-        {
-          id: 1,
-          label: "Proj1 Todo000",
-        },
-      ],
-    },
-    {
-      id: 2,
-      label: "Proj2",
-      todoList: [
-        {
-          id: 1,
-          label: "Proj2 Todo111",
-        },
-        {
-          id: 2,
-          label: "Proj2 Todo222",
-        },
-      ],
-    },
-  ]; // make this load from localstorage at some point
+  let projectsArr = [];
   let index = 0;
 
-  function addProjectObj({ labelDataContent, todoList }) {
+  function addProjectObj({ title, todoList }) {
     let projectObj = {
       id: ++index,
-      descID: `descID: ${index}`,
-      labelFor: `descID: ${index}`,
-      labelDataContent: labelDataContent || "",
+      title: title || "",
       todoList: todoList || [],
     };
     projectsArr.push(projectObj);
+    addProjectsToLS();
     // // projectsArr.sort((a, b) => a > b ? 1 : -1)
     return projectObj;
   }
@@ -49,6 +23,7 @@ const projects = (function () {
   }
 
   function getList() {
+    getProjectsFromLS();
     if (projectsArr.length === 0) {
       projectsArr = getProjectsFromLS();
     }
@@ -63,10 +38,11 @@ const projects = (function () {
   // sets projectsArr from LS contents
   function getProjectsFromLS() {
     let projectsListStr = localStorage.getItem("projectsList");
-    return JSON.parse(projectsListStr);
+    projectsArr = JSON.parse(projectsListStr);
+    return projectsArr;
   }
 
   function removeProject() {}
 
-  return { removeProject, getList, addProjectObj, findProject, addProjectsToLS, getProjectsFromLS };
+  return { removeProject, getList, addProjectObj, findProject, addProjectsToLS };
 })();

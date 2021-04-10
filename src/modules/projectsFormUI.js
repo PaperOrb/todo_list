@@ -8,8 +8,8 @@ const projectsFormUI = (function () {
     return target.querySelector(".project-input-description");
   }
 
-  function taskLabel(target) {
-    return target.querySelector(".label-faking-as-checkmark");
+  function selectProjectBtn(target) {
+    return target.querySelector(".select-project-btn");
   }
 
   function toggleEdit(target) {
@@ -25,13 +25,8 @@ const projectsFormUI = (function () {
   }
 
   function updateprojectForm(projectForm, projectObj) {
-    projectForm.id = projectObj.id; // set form id
-
-    projectForm.querySelector(".checkbox").id = projectObj.descID; // set checkbox ID
-    taskLabel(projectForm).setAttribute("for", projectObj.labelFor); // set label for attribute
-    taskLabel(projectForm).setAttribute("data-content", projectObj.labelDataContent); // set label content
-    // add function to fillPriority
-    // add function to fillDate
+    projectForm.id = projectObj.id; // set project form id
+    selectProjectBtn(projectForm).textContent = projectObj.title; // set project form button title
   }
 
   function newBlankFormInsideLI() {
@@ -42,9 +37,9 @@ const projectsFormUI = (function () {
 
   function displayList(listArr) {
     listArr.forEach((projectObj) => {
-      let formInsideContainer = projectFormUI.newBlankFormInsideLI();
+      let formInsideContainer = newBlankFormInsideLI();
       let form = formInsideContainer.querySelector(".project-form");
-      projectFormUI.updateprojectForm(form, projectObj);
+      updateprojectForm(form, projectObj);
       projectList.prepend(formInsideContainer);
     });
   }
