@@ -31,12 +31,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
-  max-height: auto;
+  height: 100%;
   width: 25vw;
   background-color: var(--secondary-color);
-  overflow-y: scroll;
-  scrollbar-width: none;
 }
 
 .title {
@@ -47,11 +44,13 @@ body {
 
 .side-bar-projects {
   border: 1px solid var(--text-color);
-  min-height: 80vh;
-  max-height: auto;
   padding: 0 20px;
+  min-height: 83vh;
+  max-height: auto;
   margin-bottom: 20px;
   width: 90%;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .projects-header-container {
@@ -103,6 +102,7 @@ body {
 }
 
 .project-btn-container {
+  position: relative;
   display: flex;
   padding-left: 20px;
   flex-direction: column;
