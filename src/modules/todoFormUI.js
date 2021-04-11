@@ -2,7 +2,8 @@ export { todoFormUI };
 
 const todoFormUI = (function () {
   const todoTemplate = document.querySelector("#clone-this-todo-template");
-  const todoList = document.querySelector(".todos-page-list");
+  const todoListUL = document.querySelector(".todos-page-list");
+  const todosPage = document.querySelector(".todos-page");
 
   function getDescInputEle(target) {
     return target.querySelector(".todo-input-description");
@@ -45,8 +46,15 @@ const todoFormUI = (function () {
       let formInsideContainer = todoFormUI.newBlankFormInsideLI();
       let form = formInsideContainer.querySelector(".todo-form");
       todoFormUI.updateTodoForm(form, todoObj);
-      todoList.prepend(formInsideContainer);
+      todoListUL.prepend(formInsideContainer);
     });
+  }
+
+  function clearList() {
+    while (todoListUL.firstChild) {
+      todoListUL.lastChild.remove();
+    }
+    todosPage.append(todoListUL); //this appends old todoList with all its todos. fix it
   }
 
   function remove(currentTarget) {
@@ -56,6 +64,7 @@ const todoFormUI = (function () {
   return {
     toggleEdit,
     displayList,
+    clearList,
     remove,
     newBlankFormInsideLI,
     // getPriorityInput

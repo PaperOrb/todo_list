@@ -60,6 +60,9 @@ projectsList.addEventListener("submit", (e) => {
 
   switch (e.submitter.id) {
     case "view-project-todos":
+      e.preventDefault();
+      todoFormUI.clearList();
+      todoFormUI.displayList(projectObj.todoList);
       break;
     case "project-edit":
       e.preventDefault();
