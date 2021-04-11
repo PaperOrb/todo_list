@@ -11,10 +11,12 @@ const addTodoBtn = document.querySelector("#add-todo");
 const projectsList = document.querySelector(".projects-page-list");
 const addProjectBtn = document.querySelector("#add-project");
 
-// module purely for testing load page
 (function () {
-  let testTodo = todos.addTodoObj({ labelDataContent: "test todo" });
-  projects.addProjectObj({ title: "Default Project", todoList: [testTodo] });
+  let defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
+  let defaultProject = projects.addProjectObj({ title: "Default Project", todoList: [defaultTodo] });
+  todoFormUI.clearList();
+  todoFormUI.displayList(defaultProject.todoList);
+  projectsFormUI.setHeading(defaultProject.title);
 
   let projectsList = projects.getList();
   projectsFormUI.displayList(projectsList);
