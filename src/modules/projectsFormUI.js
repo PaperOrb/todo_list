@@ -3,6 +3,7 @@ export { projectsFormUI };
 const projectsFormUI = (function () {
   const projectTemplate = document.querySelector("#clone-this-project-template");
   const projectList = document.querySelector(".projects-page-list");
+  const todosPageHeading = document.querySelector(".todos-heading-content");
 
   function getDescInputEle(target) {
     return target.querySelector(".project-input-description");
@@ -46,6 +47,10 @@ const projectsFormUI = (function () {
     });
   }
 
+  function setHeading(title) {
+    todosPageHeading.textContent = title;
+  }
+
   function remove(currentTarget) {
     console.log(currentTarget);
     currentTarget.remove();
@@ -58,5 +63,6 @@ const projectsFormUI = (function () {
     newBlankFormInsideLI,
     getDescInputEle,
     updateProjectForm,
+    setHeading,
   };
 })();

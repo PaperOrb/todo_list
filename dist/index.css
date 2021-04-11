@@ -130,7 +130,7 @@ body {
   background: var(--primary-color);
 }
 
-.todos-page-heading {
+.todos-heading-container {
   display: flex;
   width: 90%;
   margin: 25px 0;
@@ -139,7 +139,7 @@ body {
   height: 55px;
 }
 
-.todos-page-heading > h4 {
+.todos-heading-container > h4 {
   width: 90%;
 }
 

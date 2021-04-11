@@ -63,6 +63,7 @@ projectsList.addEventListener("submit", (e) => {
       e.preventDefault();
       todoFormUI.clearList();
       todoFormUI.displayList(projectObj.todoList);
+      projectsFormUI.setHeading(projectObj.title);
       break;
     case "project-edit":
       e.preventDefault();
