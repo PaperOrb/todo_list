@@ -13,26 +13,11 @@ const addProjectBtn = document.querySelector("#add-project");
 
 // module purely for testing load page
 (function () {
-  localStorage.clear();
   let testTodo = todos.addTodoObj({ labelDataContent: "test todo" });
-  projects.addProjectObj({ title: "first project first project first project first project", todoList: [testTodo] });
-  projects.addProjectObj({ title: "second project", todoList: [testTodo] });
+  projects.addProjectObj({ title: "Default Project", todoList: [testTodo] });
 
   let projectsList = projects.getList();
   projectsFormUI.displayList(projectsList);
-  // top level objects in LS are projects. Nested arrs inside them are todos
-
-  // localStorage.forEach((project) => {
-  //   todos.addTodoObj({ labelDataContent: label });
-  // });
-  // projectsFormUI.displayList(projects.getList());
-
-  // -------------------------------------------------
-  // let localStorage = ["testing", "mah", "storage", "next", "testasdf", "mah", "storage", "next", "testasdf"];
-  // localStorage.forEach((label) => {
-  //   todos.addTodoObj({ labelDataContent: label });
-  // });
-  // todoFormUI.displayList(todos.getList());
 })();
 
 addProjectBtn.addEventListener("click", (e) => {
