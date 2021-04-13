@@ -22,12 +22,12 @@ const projects = (function () {
       todoList: todoList || [],
     };
     projectsArr.push(projectObj);
-    addProjectsToLS();
+    updateProjectsInLS();
     // // projectsArr.sort((a, b) => a > b ? 1 : -1)
     return projectObj;
   }
 
-  function addProjectsToLS() {
+  function updateProjectsInLS() {
     let projectsListStr = JSON.stringify(projectsArr);
     localStorage.setItem("projectsList", projectsListStr);
   }
@@ -41,5 +41,5 @@ const projects = (function () {
 
   function removeProject() {}
 
-  return { removeProject, getProjectsFromLS, addProjectObj, setCurrent, addProjectsToLS, getCurrent };
+  return { removeProject, getProjectsFromLS, addProjectObj, setCurrent, updateProjectsInLS, getCurrent };
 })();

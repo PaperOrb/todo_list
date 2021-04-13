@@ -65,7 +65,8 @@ projectsList.addEventListener("submit", (e) => {
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
       projects.getCurrent().title = projectsFormUI.getDescInputEle(e.target).value;
-      // console.log(projects.getProjectsFromLS())
+      // console.log(projects.getCurrent().title);
+      // projects.updateProjectsInLS;
       projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
       break;
   }
