@@ -43,19 +43,19 @@ addTodoBtn.addEventListener("click", (e) => {
 });
 
 projectsList.addEventListener("submit", (e) => {
-  let projectObj = projects.findProject(e.target.id);
+  projects.setCurrent(e.target.id);
 
   switch (e.submitter.id) {
     case "view-project-todos":
       e.preventDefault();
       todoFormUI.clearList();
-      todoFormUI.displayList(projectObj.todoList);
-      projectsFormUI.setHeading(projectObj.title);
+      todoFormUI.displayList(projects.getCurrent().todoList);
+      projectsFormUI.setHeading(projects.getCurrent().title);
       break;
     case "project-edit":
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
-      projectsFormUI.getDescInputEle(e.target).setAttribute("value", projectObj.title);
+      projectsFormUI.getDescInputEle(e.target).setAttribute("value", projects.getCurrent().title);
       break;
     case "project-remove":
       e.preventDefault();
@@ -64,8 +64,9 @@ projectsList.addEventListener("submit", (e) => {
     case "project-input-description-btn":
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
-      projectObj.title = projectsFormUI.getDescInputEle(e.target).value;
-      projectsFormUI.updateProjectForm(e.target, projectObj);
+      projects.getCurrent().title = projectsFormUI.getDescInputEle(e.target).value;
+      // console.log(projects.getList()) 
+      projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
       break;
   }
 });

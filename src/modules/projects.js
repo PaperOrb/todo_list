@@ -3,6 +3,17 @@ export { projects };
 const projects = (function () {
   let projectsArr = [];
   let index = 0;
+  let current = {};
+
+  function setCurrent(targetID) {
+    current = projectsArr.find((element) => {
+      return `${element.id}` === `${targetID}`;
+    });
+  }
+
+  function getCurrent() {
+    return current;
+  }
 
   function addProjectObj({ title, todoList }) {
     let projectObj = {
@@ -14,12 +25,6 @@ const projects = (function () {
     addProjectsToLS();
     // // projectsArr.sort((a, b) => a > b ? 1 : -1)
     return projectObj;
-  }
-
-  function findProject(targetID) {
-    return projectsArr.find((element) => {
-      return `${element.id}` === `${targetID}`;
-    });
   }
 
   function getList() {
@@ -44,5 +49,5 @@ const projects = (function () {
 
   function removeProject() {}
 
-  return { removeProject, getList, addProjectObj, findProject, addProjectsToLS };
+  return { removeProject, getList, addProjectObj, setCurrent, addProjectsToLS, getCurrent };
 })();
