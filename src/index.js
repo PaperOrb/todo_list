@@ -18,8 +18,8 @@ const addProjectBtn = document.querySelector("#add-project");
   todoFormUI.displayList(defaultProject.todoList);
   projectsFormUI.setHeading(defaultProject.title);
 
-  let projectsList = projects.getList();
-  projectsFormUI.displayList(projectsList);
+  let projectsArr = projects.getProjectsFromLS();
+  projectsFormUI.displayList(projectsArr);
 })();
 
 addProjectBtn.addEventListener("click", (e) => {
@@ -65,7 +65,7 @@ projectsList.addEventListener("submit", (e) => {
       e.preventDefault();
       projectsFormUI.toggleEdit(e.target);
       projects.getCurrent().title = projectsFormUI.getDescInputEle(e.target).value;
-      // console.log(projects.getList()) 
+      // console.log(projects.getProjectsFromLS())
       projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
       break;
   }

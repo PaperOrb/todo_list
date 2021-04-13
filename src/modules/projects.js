@@ -27,14 +27,6 @@ const projects = (function () {
     return projectObj;
   }
 
-  function getList() {
-    getProjectsFromLS();
-    if (projectsArr.length === 0) {
-      projectsArr = getProjectsFromLS();
-    }
-    return projectsArr;
-  }
-
   function addProjectsToLS() {
     let projectsListStr = JSON.stringify(projectsArr);
     localStorage.setItem("projectsList", projectsListStr);
@@ -49,5 +41,5 @@ const projects = (function () {
 
   function removeProject() {}
 
-  return { removeProject, getList, addProjectObj, setCurrent, addProjectsToLS, getCurrent };
+  return { removeProject, getProjectsFromLS, addProjectObj, setCurrent, addProjectsToLS, getCurrent };
 })();

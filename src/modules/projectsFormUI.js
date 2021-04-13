@@ -39,6 +39,7 @@ const projectsFormUI = (function () {
   }
 
   function displayList(listArr) {
+    console.log(listArr);
     listArr.forEach((projectObj) => {
       let formInsideContainer = newBlankFormInsideLI();
       let form = formInsideContainer.querySelector(".project-form");
