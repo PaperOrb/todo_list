@@ -13,17 +13,16 @@ const addProjectBtn = document.querySelector("#add-project");
 
 (function () {
   localStorage.clear(); // remove after done testing if condition below
-  let defaultTodo, defaultProject;
   if (localStorage.getItem("projectsList") === null) {
     projects.updateArrThenLS();
-    defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
-    defaultProject = projects.addProjectObj({ title: "Default Project", todoList: [defaultTodo] });
+    let defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
+    projects.addProjectObj({ title: "Default Project", todoList: [defaultTodo] });
+    projects.setCurrent(1);
   }
 
   todoFormUI.clearList();
-  todoFormUI.displayList(defaultProject.todoList);
-  projectsFormUI.setHeading(defaultProject.title);
-
+  todoFormUI.displayList(projects.getCurrent().todoList);
+  projectsFormUI.setHeading(projects.getCurrent().title);
   projectsFormUI.displayList(projects.arr());
 })();
 
