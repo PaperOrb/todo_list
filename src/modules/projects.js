@@ -15,33 +15,40 @@ const projects = (function () {
     return current;
   }
 
-  function addProjectObj({ title, todoList }) {
+  function addProjToArr({ title, todoList }) {
     let projectObj = {
       id: ++index,
       title: title || "",
       todoList: todoList || [],
     };
+
     projectsArr.push(projectObj);
     // // projectsArr.sort((a, b) => a > b ? 1 : -1)
     return projectObj;
   }
 
-  // can't do these operations reversed, so decided to make a wrapper
-  function updateArrThenLS() {
-    setArrFromLS();
-    setLsFromArr();
-  }
-
-  function setLsFromArr() {
+  function addArrToLS() {
     let projectsListStr = JSON.stringify(projectsArr);
     localStorage.setItem("projectsList", projectsListStr);
   }
 
+  function addIndexToLS() {
+    let indexStr = JSON.stringify(index);
+    localStorage.setItem("index", indexStr);
+  }
+
+  function addLsToIndex() {
+    let indexStr = localStorage.getItem("index");
+    index = JSON.parse(indexStr) || 0;
+    return index;
+  }
+
   // sets projectsArr from LS contents
-  function setArrFromLS() {
+  function addLsToArr() {
     let projectsListStr = localStorage.getItem("projectsList");
     projectsArr = JSON.parse(projectsListStr) || [];
     return projectsArr;
+    // JSON.parse(localStorage.getItem("projectsList"))
   }
 
   function removeProject() {}
@@ -50,5 +57,15 @@ const projects = (function () {
     return projectsArr;
   }
 
-  return { removeProject, addProjectObj, setCurrent, getCurrent, updateArrThenLS, arr };
+  return {
+    removeProject,
+    addProjToArr,
+    setCurrent,
+    getCurrent,
+    addIndexToLS,
+    addLsToIndex,
+    addLsToArr,
+    addArrToLS,
+    arr,
+  };
 })();
