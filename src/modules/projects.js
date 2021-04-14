@@ -51,7 +51,13 @@ const projects = (function () {
     // JSON.parse(localStorage.getItem("projectsList"))
   }
 
-  function removeProject() {}
+  function removeProject(id) {
+    let new_arr = arr().filter((ele) => {
+      return Number(ele.id) !== Number(id);
+    });
+    debugger;
+    projectsArr = new_arr;
+  }
 
   function arr() {
     return projectsArr;

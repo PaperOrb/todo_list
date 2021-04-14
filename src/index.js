@@ -21,8 +21,10 @@ const addProjectBtn = document.querySelector("#add-project");
     projects.addProjToArr({ title: "Default Project", todoList: [defaultTodo] });
     projects.addArrToLS();
     projects.addIndexToLS();
-    projects.setCurrent(1);
   }
+
+  let firstProjID = projects.arr()[0].id;
+  projects.setCurrent(firstProjID);
 
   todoFormUI.clearList();
   todoFormUI.displayList(projects.getCurrent().todoList);
@@ -70,6 +72,9 @@ projectsList.addEventListener("submit", (e) => {
       break;
     case "project-remove":
       e.preventDefault();
+      projects.removeProject(e.target.id);
+      //
+      projects.addArrToLS();
       projectsFormUI.remove(e.target);
       break;
     case "project-input-description-btn":
