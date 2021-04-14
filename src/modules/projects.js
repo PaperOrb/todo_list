@@ -22,24 +22,33 @@ const projects = (function () {
       todoList: todoList || [],
     };
     projectsArr.push(projectObj);
-    updateProjectsInLS();
     // // projectsArr.sort((a, b) => a > b ? 1 : -1)
     return projectObj;
   }
 
-  function updateProjectsInLS() {
+  // can't do these operations reversed, so decided to make a wrapper
+  function updateArrThenLS() {
+    setArrFromLS();
+    setLsFromArr();
+  }
+
+  function setLsFromArr() {
     let projectsListStr = JSON.stringify(projectsArr);
     localStorage.setItem("projectsList", projectsListStr);
   }
 
   // sets projectsArr from LS contents
-  function getProjectsFromLS() {
+  function setArrFromLS() {
     let projectsListStr = localStorage.getItem("projectsList");
-    projectsArr = JSON.parse(projectsListStr);
+    projectsArr = JSON.parse(projectsListStr) || [];
     return projectsArr;
   }
 
   function removeProject() {}
 
-  return { removeProject, getProjectsFromLS, addProjectObj, setCurrent, updateProjectsInLS, getCurrent };
+  function arr() {
+    return projectsArr;
+  }
+
+  return { removeProject, addProjectObj, setCurrent, getCurrent, updateArrThenLS, arr };
 })();

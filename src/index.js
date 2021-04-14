@@ -12,14 +12,19 @@ const projectsList = document.querySelector(".projects-page-list");
 const addProjectBtn = document.querySelector("#add-project");
 
 (function () {
-  let defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
-  let defaultProject = projects.addProjectObj({ title: "Default Project", todoList: [defaultTodo] });
+  localStorage.clear(); // remove after done testing if condition below
+  let defaultTodo, defaultProject;
+  if (localStorage.getItem("projectsList") === null) {
+    projects.updateArrThenLS();
+    defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
+    defaultProject = projects.addProjectObj({ title: "Default Project", todoList: [defaultTodo] });
+  }
+
   todoFormUI.clearList();
   todoFormUI.displayList(defaultProject.todoList);
   projectsFormUI.setHeading(defaultProject.title);
 
-  let projectsArr = projects.getProjectsFromLS();
-  projectsFormUI.displayList(projectsArr);
+  projectsFormUI.displayList(projects.arr());
 })();
 
 addProjectBtn.addEventListener("click", (e) => {
@@ -27,6 +32,7 @@ addProjectBtn.addEventListener("click", (e) => {
   let projObj = projects.addProjectObj({});
   let projFormInsideLI = projectsFormUI.newBlankFormInsideLI();
   let projForm = projFormInsideLI.querySelector(".project-form");
+
   projectsFormUI.updateProjectForm(projForm, projObj);
   projectsList.prepend(projFormInsideLI);
   projectsFormUI.toggleEdit(projForm, projObj);
@@ -66,7 +72,7 @@ projectsList.addEventListener("submit", (e) => {
       projectsFormUI.toggleEdit(e.target);
       projects.getCurrent().title = projectsFormUI.getDescInputEle(e.target).value;
       // console.log(projects.getCurrent().title);
-      // projects.updateProjectsInLS;
+      // projects.setLsFromArr;
       projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
       break;
   }
