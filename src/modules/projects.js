@@ -2,7 +2,8 @@ export { projects };
 
 const projects = (function () {
   let projectsArr = [];
-  let index = 0;
+  let projIndex = 0;
+  let todoIndex = 0;
   let current = {};
 
   function setCurrent(targetID) {
@@ -17,7 +18,7 @@ const projects = (function () {
 
   function addProjToArr({ title, todoList }) {
     let projectObj = {
-      id: ++index,
+      id: ++projIndex,
       title: title || "",
       todoList: todoList || [],
     };
@@ -33,14 +34,14 @@ const projects = (function () {
   }
 
   function addIndexToLS() {
-    let indexStr = JSON.stringify(index);
+    let indexStr = JSON.stringify(projIndex);
     localStorage.setItem("index", indexStr);
   }
 
   function addLsToIndex() {
     let indexStr = localStorage.getItem("index");
-    index = JSON.parse(indexStr) || 0;
-    return index;
+    projIndex = JSON.parse(indexStr) || 0;
+    return projIndex;
   }
 
   // sets projectsArr from LS contents
@@ -55,7 +56,6 @@ const projects = (function () {
     let new_arr = arr().filter((ele) => {
       return Number(ele.id) !== Number(id);
     });
-    debugger;
     projectsArr = new_arr;
   }
 
@@ -63,7 +63,29 @@ const projects = (function () {
     return projectsArr;
   }
 
+  function createTodo({ labelDataContent, priority, completion, dueDate }) {
+    let todoObj = {
+      id: ++todoIndex,
+      descID: `descID: ${todoIndex}`,
+      labelFor: `descID: ${todoIndex}`,
+      labelDataContent: labelDataContent || "",
+      priority: priority || "",
+      completion: completion || "",
+      dueDate: dueDate || "",
+    };
+    // todosArr.sort((a, b) => a > b ? 1 : -1)
+    return todoObj;
+  }
+
+  function findTodo(targetID, todoList) {
+    return todoList.find((element) => {
+      return `${element.id}` === `${targetID}`;
+    });
+  }
+
   return {
+    findTodo,
+    createTodo,
     removeProject,
     addProjToArr,
     setCurrent,

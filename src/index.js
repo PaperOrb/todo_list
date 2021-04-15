@@ -1,5 +1,4 @@
 import { todoFormUI } from "./modules/todoFormUI.js";
-import { todos } from "./modules/todos.js";
 import { projectsFormUI } from "./modules/projectsFormUI.js";
 import { projects } from "./modules/projects.js";
 
@@ -17,7 +16,7 @@ const addProjectBtn = document.querySelector("#add-project");
     projects.addLsToIndex();
     projects.setCurrent(1);
   } else {
-    let defaultTodo = todos.addTodoObj({ labelDataContent: "Default Todo" });
+    let defaultTodo = projects.createTodo({ labelDataContent: "Default Todo" });
     projects.addProjToArr({ title: "Default Project", todoList: [defaultTodo] });
     projects.addArrToLS();
     projects.addIndexToLS();
@@ -26,7 +25,7 @@ const addProjectBtn = document.querySelector("#add-project");
   if (projects.arr().length === 0) {
     return;
   }
-  let firstProjID = projects.arr()[0].id || undefined;
+  let firstProjID = projects.arr()[0].id;
   projects.setCurrent(firstProjID);
 
   todoFormUI.clearList();
@@ -50,9 +49,10 @@ addProjectBtn.addEventListener("click", (e) => {
 
 addTodoBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let todoObj = todos.addTodoObj({});
+  let todoObj = projects.createTodo({});
   let formInsideContainer = todoFormUI.newBlankFormInsideLI();
   let form = formInsideContainer.querySelector(".todo-form");
+  // projects.getCurrent().todoList.shift(todoObj)
   todoFormUI.updateTodoForm(form, todoObj);
   todoList.prepend(formInsideContainer);
   todoFormUI.toggleEdit(form, todoObj);
@@ -93,7 +93,7 @@ projectsList.addEventListener("submit", (e) => {
 });
 
 todoList.addEventListener("submit", (e) => {
-  let todoObj = todos.findTodo(e.target.id);
+  let todoObj = projects.findTodo(e.target.id, projects.getCurrent().todoList);
 
   switch (e.submitter.id) {
     case "todo-edit":
@@ -114,7 +114,6 @@ todoList.addEventListener("submit", (e) => {
       todoFormUI.toggleEdit(e.target);
       todoObj.labelDataContent = todoFormUI.getDescInputEle(e.target).value;
       todoFormUI.updateTodoForm(e.target, todoObj);
-
       break;
     // add case "fillPriority"
     // add caes "fillDate"
