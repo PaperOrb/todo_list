@@ -23,7 +23,10 @@ const addProjectBtn = document.querySelector("#add-project");
     projects.addIndexToLS();
   }
 
-  let firstProjID = projects.arr()[0].id;
+  if (projects.arr().length === 0) {
+    return;
+  }
+  let firstProjID = projects.arr()[0].id || undefined;
   projects.setCurrent(firstProjID);
 
   todoFormUI.clearList();
