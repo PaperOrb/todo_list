@@ -14,7 +14,6 @@ const addProjectBtn = document.querySelector("#add-project");
   if (localStorage.getItem("projectsList") !== null) {
     projects.addLsToArr();
     projects.addLsToIndex();
-    projects.setCurrent(1);
   } else {
     let defaultTodo = projects.createTodo({ labelDataContent: "Default Todo" });
     projects.addProjToArr({ title: "Default Project", todoList: [defaultTodo] });
@@ -52,7 +51,7 @@ addTodoBtn.addEventListener("click", (e) => {
   let todoObj = projects.createTodo({});
   let formInsideContainer = todoFormUI.newBlankFormInsideLI();
   let form = formInsideContainer.querySelector(".todo-form");
-  // projects.getCurrent().todoList.shift(todoObj)
+  projects.getCurrent().todoList.unshift(todoObj);
   todoFormUI.updateTodoForm(form, todoObj);
   todoList.prepend(formInsideContainer);
   todoFormUI.toggleEdit(form, todoObj);
@@ -114,6 +113,7 @@ todoList.addEventListener("submit", (e) => {
       todoFormUI.toggleEdit(e.target);
       todoObj.labelDataContent = todoFormUI.getDescInputEle(e.target).value;
       todoFormUI.updateTodoForm(e.target, todoObj);
+      projects.addArrToLS();
       break;
     // add case "fillPriority"
     // add caes "fillDate"
