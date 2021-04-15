@@ -10,15 +10,18 @@ const addTodoBtn = document.querySelector("#add-todo");
 const projectsList = document.querySelector(".projects-page-list");
 const addProjectBtn = document.querySelector("#add-project");
 
+// page load
 (function () {
   if (localStorage.getItem("projectsList") !== null) {
     projects.addLsToArr();
-    projects.addLsToIndex();
+    projects.addLsToProjIndex();
+    projects.addLsToTodoIndex();
   } else {
     let defaultTodo = projects.createTodo({ labelDataContent: "Default Todo" });
     projects.addProjToArr({ title: "Default Project", todoList: [defaultTodo] });
     projects.addArrToLS();
-    projects.addIndexToLS();
+    projects.addProjIndexToLS();
+    projects.addTodoIndexToLS();
   }
 
   if (projects.arr().length === 0) {
@@ -33,28 +36,18 @@ const addProjectBtn = document.querySelector("#add-project");
   projectsFormUI.displayList(projects.arr());
 })();
 
+// projects
 addProjectBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let projObj = projects.addProjToArr({});
   let projFormInsideLI = projectsFormUI.newBlankFormInsideLI();
   let projForm = projFormInsideLI.querySelector(".project-form");
-  projects.addIndexToLS();
+  projects.addProjIndexToLS();
   projects.setCurrent(projObj.id);
 
   projectsFormUI.updateProjectForm(projForm, projObj);
   projectsList.prepend(projFormInsideLI);
   projectsFormUI.toggleEdit(projForm, projObj);
-});
-
-addTodoBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  let todoObj = projects.createTodo({});
-  let formInsideContainer = todoFormUI.newBlankFormInsideLI();
-  let form = formInsideContainer.querySelector(".todo-form");
-  projects.getCurrent().todoList.unshift(todoObj);
-  todoFormUI.updateTodoForm(form, todoObj);
-  todoList.prepend(formInsideContainer);
-  todoFormUI.toggleEdit(form, todoObj);
 });
 
 projectsList.addEventListener("submit", (e) => {
@@ -89,6 +82,19 @@ projectsList.addEventListener("submit", (e) => {
       projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
       break;
   }
+});
+
+// todos
+addTodoBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let todoObj = projects.createTodo({});
+  let formInsideContainer = todoFormUI.newBlankFormInsideLI();
+  let form = formInsideContainer.querySelector(".todo-form");
+  projects.addTodoIndexToLS();
+  projects.getCurrent().todoList.unshift(todoObj);
+  todoFormUI.updateTodoForm(form, todoObj);
+  todoList.prepend(formInsideContainer);
+  todoFormUI.toggleEdit(form, todoObj);
 });
 
 todoList.addEventListener("submit", (e) => {

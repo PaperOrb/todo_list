@@ -33,13 +33,13 @@ const projects = (function () {
     localStorage.setItem("projectsList", projectsListStr);
   }
 
-  function addIndexToLS() {
+  function addProjIndexToLS() {
     let indexStr = JSON.stringify(projIndex);
-    localStorage.setItem("index", indexStr);
+    localStorage.setItem("projIndex", indexStr);
   }
 
-  function addLsToIndex() {
-    let indexStr = localStorage.getItem("index");
+  function addLsToProjIndex() {
+    let indexStr = localStorage.getItem("projIndex");
     projIndex = JSON.parse(indexStr) || 0;
     return projIndex;
   }
@@ -83,6 +83,17 @@ const projects = (function () {
     });
   }
 
+  function addTodoIndexToLS() {
+    let indexStr = JSON.stringify(todoIndex);
+    localStorage.setItem("todoIndex", indexStr);
+  }
+
+  function addLsToTodoIndex() {
+    let indexStr = localStorage.getItem("todoIndex");
+    todoIndex = JSON.parse(indexStr) || 0;
+    return todoIndex;
+  }
+
   return {
     findTodo,
     createTodo,
@@ -90,8 +101,10 @@ const projects = (function () {
     addProjToArr,
     setCurrent,
     getCurrent,
-    addIndexToLS,
-    addLsToIndex,
+    addProjIndexToLS,
+    addLsToProjIndex,
+    addTodoIndexToLS,
+    addLsToTodoIndex,
     addLsToArr,
     addArrToLS,
     arr,
