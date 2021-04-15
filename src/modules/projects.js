@@ -94,10 +94,17 @@ const projects = (function () {
     return todoIndex;
   }
 
+  function removeTodo(todoId, project) {
+    project.todoList = project.todoList.filter((todo) => {
+      return Number(todo.id) !== Number(todoId);
+    });
+  }
+
   return {
     findTodo,
     createTodo,
     removeProject,
+    removeTodo,
     addProjToArr,
     setCurrent,
     getCurrent,

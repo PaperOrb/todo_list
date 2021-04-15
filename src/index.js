@@ -103,7 +103,6 @@ todoList.addEventListener("submit", (e) => {
   let todoFormElement = e.target;
   let buttonElementID = e.submitter.id;
   let todoId = e.target.id;
-  let projectId = projects.getCurrent().id;
 
   switch (buttonElementID) {
     case "todo-edit":
@@ -113,8 +112,8 @@ todoList.addEventListener("submit", (e) => {
       break;
     case "todo-remove":
       e.preventDefault();
-      // projects.removeTodo(todoId, projectId);
-      // projects.addArrToLS();
+      projects.removeTodo(todoId, projects.getCurrent());
+      projects.addArrToLS();
       todoFormUI.remove(todoFormElement);
       break;
     case "todo-input-description-btn":
