@@ -52,8 +52,10 @@ addProjectBtn.addEventListener("click", (e) => {
 
 projectsList.addEventListener("submit", (e) => {
   projects.setCurrent(e.target.id);
+  let projectFormElement = e.target;
+  let buttonElementID = e.submitter.id;
 
-  switch (e.submitter.id) {
+  switch (buttonElementID) {
     case "view-project-todos":
       e.preventDefault();
       todoFormUI.clearList();
@@ -62,24 +64,23 @@ projectsList.addEventListener("submit", (e) => {
       break;
     case "project-edit":
       e.preventDefault();
-      projectsFormUI.toggleEdit(e.target);
-      projectsFormUI.getDescInputEle(e.target).setAttribute("value", projects.getCurrent().title);
+      projectsFormUI.toggleEdit(projectFormElement);
+      projectsFormUI.getDescInputEle(projectFormElement).setAttribute("value", projects.getCurrent().title);
       break;
     case "project-remove":
       e.preventDefault();
-      projects.removeProject(e.target.id);
-      //
+      projects.removeProject(projectFormElement.id);
       projects.addArrToLS();
-      projectsFormUI.remove(e.target);
+      projectsFormUI.remove(projectFormElement);
       break;
     case "project-input-description-btn":
       e.preventDefault();
-      projectsFormUI.toggleEdit(e.target);
-      projects.getCurrent().title = projectsFormUI.getDescInputEle(e.target).value;
+      projectsFormUI.toggleEdit(projectFormElement);
+      projects.getCurrent().title = projectsFormUI.getDescInputEle(projectFormElement).value;
       projects.addArrToLS();
       // console.log(projects.getCurrent().title);
       // projects.addArrToLS;
-      projectsFormUI.updateProjectForm(e.target, projects.getCurrent());
+      projectsFormUI.updateProjectForm(projectFormElement, projects.getCurrent());
       break;
   }
 });
@@ -99,26 +100,32 @@ addTodoBtn.addEventListener("click", (e) => {
 
 todoList.addEventListener("submit", (e) => {
   let todoObj = projects.findTodo(e.target.id, projects.getCurrent().todoList);
+  let todoFormElement = e.target;
+  let buttonElementID = e.submitter.id;
+  let todoId = e.target.id;
+  let projectId = projects.getCurrent().id;
 
-  switch (e.submitter.id) {
+  switch (buttonElementID) {
     case "todo-edit":
       e.preventDefault();
-      todoFormUI.getDescInputEle(e.target).setAttribute("value", todoObj.labelDataContent);
-      todoFormUI.toggleEdit(e.target);
+      todoFormUI.getDescInputEle(todoFormElement).setAttribute("value", todoObj.labelDataContent);
+      todoFormUI.toggleEdit(todoFormElement);
       break;
     case "todo-remove":
       e.preventDefault();
-      todoFormUI.remove(e.target);
+      // projects.removeTodo(todoId, projectId);
+      // projects.addArrToLS();
+      todoFormUI.remove(todoFormElement);
       break;
     case "todo-input-description-btn":
       e.preventDefault();
 
-      // todoObj.priority = todoFormUI.getPriorityInput(e.target);
-      // todoObj.labelDataContent = todoFormUI.getDescriptionInput(e.target);
-      // todoObj.dueDate = todoFormUI.getDateInput(e.target);
-      todoFormUI.toggleEdit(e.target);
-      todoObj.labelDataContent = todoFormUI.getDescInputEle(e.target).value;
-      todoFormUI.updateTodoForm(e.target, todoObj);
+      // todoObj.priority = todoFormUI.getPriorityInput(todoFormElement);
+      // todoObj.labelDataContent = todoFormUI.getDescriptionInput(todoFormElement);
+      // todoObj.dueDate = todoFormUI.getDateInput(todoFormElement);
+      todoFormUI.toggleEdit(todoFormElement);
+      todoObj.labelDataContent = todoFormUI.getDescInputEle(todoFormElement).value;
+      todoFormUI.updateTodoForm(todoFormElement, todoObj);
       projects.addArrToLS();
       break;
     // add case "fillPriority"
