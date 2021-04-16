@@ -16,7 +16,10 @@ const todoFormUI = (function () {
   function toggleEdit(target) {
     const checkboxContainer = target.querySelector(".checkbox-container");
     const pencilButton = target.querySelector("#todo-edit");
+    const dateInput = target.querySelector(".todo-due-date");
 
+    dateInput.toggleAttribute("disabled");
+    dateInput.classList.toggle("todo-due-date-active");
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     // alert(pencilButton);
     pencilButton.toggleAttribute("disabled");

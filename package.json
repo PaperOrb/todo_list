@@ -24,7 +24,9 @@
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.21.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PaperOrb/todo_list.git"
