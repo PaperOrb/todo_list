@@ -63,14 +63,14 @@ const projects = (function () {
     return projectsArr;
   }
 
-  function createTodo({ labelDataContent, priority, completion, dueDate }) {
+  function createTodo({ labelDataContent, priority, checked, dueDate }) {
     let todoObj = {
       id: ++todoIndex,
       descID: `descID: ${todoIndex}`,
       labelFor: `descID: ${todoIndex}`,
       labelDataContent: labelDataContent || "",
       priority: priority || "",
-      completion: completion || "",
+      checked: checked || "",
       dueDate: dueDate || "",
     };
     // todosArr.sort((a, b) => a > b ? 1 : -1)

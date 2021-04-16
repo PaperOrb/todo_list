@@ -13,8 +13,12 @@ const todoFormUI = (function () {
     return target.querySelector(".todo-due-date");
   }
 
-  function taskLabel(target) {
+  function getTaskLabel(target) {
     return target.querySelector(".label-faking-as-checkmark");
+  }
+
+  function getCheckbox(target) {
+    return target.querySelector(".checkbox");
   }
 
   function toggleEdit(target) {
@@ -35,9 +39,13 @@ const todoFormUI = (function () {
     todoForm.id = todoObj.id; // set form id
 
     todoForm.querySelector(".checkbox").id = todoObj.descID; // set checkbox ID
-    taskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
-    taskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
+    getTaskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
+    getTaskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
     // add function to fillPriority
+    // set checkbox as checked
+    if (todoObj.checked === "true") {
+      getCheckbox(todoForm).setAttribute("checked", "");
+    } 
     getDateInputEle(todoForm).value = todoObj.dueDate; // set date value
   }
 
