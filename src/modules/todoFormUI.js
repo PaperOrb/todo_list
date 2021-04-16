@@ -45,7 +45,7 @@ const todoFormUI = (function () {
     // set checkbox as checked
     if (todoObj.checked === "true") {
       getCheckbox(todoForm).setAttribute("checked", "");
-    } 
+    }
     getDateInputEle(todoForm).value = todoObj.dueDate; // set date value
   }
 

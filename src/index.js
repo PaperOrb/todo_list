@@ -81,6 +81,9 @@ projectsList.addEventListener("submit", (e) => {
       // console.log(projects.getCurrent().title);
       // projects.addArrToLS;
       projectsFormUI.updateProjectForm(projectFormElement, projects.getCurrent());
+      todoFormUI.clearList();
+      projectsFormUI.setHeading(projects.getCurrent().title);
+      todoFormUI.displayList(projects.getCurrent().todoList); // get this working so adding a project displays its todolist.
       break;
   }
 });
@@ -139,8 +142,6 @@ todoList.addEventListener("click", (e) => {
     let checkboxId = e.target.getAttribute("for");
     let formId = Number(checkboxId[checkboxId.length - 1]);
     let todoObj = projects.findTodo(formId, projects.getCurrent().todoList);
-    let checkboxEle = document.getElementById(`${checkboxId}`);
-    // checkboxEle.toggleAttribute("checked");
     todoObj.checked = todoObj.checked === "true" ? "false" : "true";
     projects.addArrToLS();
   }
