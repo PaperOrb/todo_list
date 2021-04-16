@@ -135,11 +135,13 @@ todoList.addEventListener("submit", (e) => {
 });
 
 todoList.addEventListener("click", (e) => {
-  // let checkboxId;
-  console.log("checkboxId");
-
   if (e.target.classList.contains("label-faking-as-checkmark")) {
-    // checkboxId = e.target.getAttribute("for");
-    console.log("checkboxId");
+    let checkboxId = e.target.getAttribute("for");
+    let formId = Number(checkboxId[checkboxId.length - 1]);
+    let todoObj = projects.findTodo(formId, projects.getCurrent().todoList);
+    let checkboxEle = document.getElementById(`${checkboxId}`);
+    // checkboxEle.toggleAttribute("checked");
+    todoObj.checked = todoObj.checked === "true" ? "false" : "true";
+    projects.addArrToLS();
   }
 });
