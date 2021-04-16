@@ -4,7 +4,6 @@ import { projects } from "./modules/projects.js";
 import { compareAsc, format } from "date-fns";
 
 // todo elements
-const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
 const addTodoBtn = document.querySelector("#add-todo");
 // project elements
@@ -134,3 +133,13 @@ todoList.addEventListener("submit", (e) => {
     // add caes "fillDate"
   }
 });
+
+// todoList.addEventListener("click", (e) => {
+//   // let checkboxId;
+//     console.log("checkboxId");
+
+//   if (e.target.classList.contains("label-faking-as-checkmark")) {
+//     // checkboxId = e.target.getAttribute("for");
+//     console.log("checkboxId");
+//   }
+// });
