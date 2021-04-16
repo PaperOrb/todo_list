@@ -3,7 +3,6 @@ import { projectsFormUI } from "./modules/projectsFormUI.js";
 import { projects } from "./modules/projects.js";
 import { compareAsc, format } from "date-fns";
 
-
 // todo elements
 const todoForms = document.querySelectorAll(".todo-form");
 const todoList = document.querySelector(".todos-page-list");
@@ -105,6 +104,7 @@ todoList.addEventListener("submit", (e) => {
   let todoFormElement = e.target;
   let buttonElementID = e.submitter.id;
   let todoId = e.target.id;
+  let dateInputElement = todoFormElement.querySelector("#todo-due-date");
 
   switch (buttonElementID) {
     case "todo-edit":
@@ -125,6 +125,7 @@ todoList.addEventListener("submit", (e) => {
       // todoObj.labelDataContent = todoFormUI.getDescriptionInput(todoFormElement);
       // todoObj.dueDate = todoFormUI.getDateInput(todoFormElement);
       todoFormUI.toggleEdit(todoFormElement);
+      todoObj.dueDate = dateInputElement.value;
       todoObj.labelDataContent = todoFormUI.getDescInputEle(todoFormElement).value;
       todoFormUI.updateTodoForm(todoFormElement, todoObj);
       projects.addArrToLS();

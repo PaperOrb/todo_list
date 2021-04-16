@@ -9,6 +9,10 @@ const todoFormUI = (function () {
     return target.querySelector(".todo-input-description");
   }
 
+  function getDateInputEle(target) {
+    return target.querySelector(".todo-due-date");
+  }
+
   function taskLabel(target) {
     return target.querySelector(".label-faking-as-checkmark");
   }
@@ -16,10 +20,9 @@ const todoFormUI = (function () {
   function toggleEdit(target) {
     const checkboxContainer = target.querySelector(".checkbox-container");
     const pencilButton = target.querySelector("#todo-edit");
-    const dateInput = target.querySelector(".todo-due-date");
 
-    dateInput.toggleAttribute("disabled");
-    dateInput.classList.toggle("todo-due-date-active");
+    getDateInputEle(target).toggleAttribute("disabled");
+    getDateInputEle(target).classList.toggle("todo-due-date-active");
     pencilButton.style.visibility = pencilButton.style.visibility === "hidden" ? "visible" : "hidden";
     // alert(pencilButton);
     pencilButton.toggleAttribute("disabled");
@@ -35,7 +38,7 @@ const todoFormUI = (function () {
     taskLabel(todoForm).setAttribute("for", todoObj.labelFor); // set label for attribute
     taskLabel(todoForm).setAttribute("data-content", todoObj.labelDataContent); // set label content
     // add function to fillPriority
-    // add function to fillDate
+    getDateInputEle(todoForm).value = todoObj.dueDate; // set date value
   }
 
   function newBlankFormInsideLI() {
