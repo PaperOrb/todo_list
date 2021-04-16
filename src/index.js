@@ -134,12 +134,12 @@ todoList.addEventListener("submit", (e) => {
   }
 });
 
-// todoList.addEventListener("click", (e) => {
-//   // let checkboxId;
-//     console.log("checkboxId");
+todoList.addEventListener("click", (e) => {
+  // let checkboxId;
+  console.log("checkboxId");
 
-//   if (e.target.classList.contains("label-faking-as-checkmark")) {
-//     // checkboxId = e.target.getAttribute("for");
-//     console.log("checkboxId");
-//   }
-// });
+  if (e.target.classList.contains("label-faking-as-checkmark")) {
+    // checkboxId = e.target.getAttribute("for");
+    console.log("checkboxId");
+  }
+});
